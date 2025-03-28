@@ -1,0 +1,55 @@
+/* Basic styling for the page */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#card-container {
+  text-align: center;
+}
+
+/* Inputs spaced nicely */
+#card-container label,
+#card-container input {
+  display: block;
+  margin: 0.5rem auto;
+}
+
+/* The "badge" or "card" area */
+#card {
+  border: 1px solid #000;
+  padding: 10px;
+  margin-top: 20px;
+  width: 3.375in;  /* Typical ID card width */
+  height: 2.125in; /* Typical ID card height */
+  background-color: #fff;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* The barcode <svg> will scale to fit */
+#barcode {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* Debug text (optional) */
+#barcodeString {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* Slightly smaller text for disclaimers */
+#card p {
+  margin: 4px 0;
+  font-size: 12px;
+}
