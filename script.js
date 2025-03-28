@@ -25,12 +25,13 @@ function generateBarcode() {
   container.appendChild(svg);
 
   // Now generate the Code128 barcode inside that <svg>
+  // Generate Code128 barcode
   JsBarcode("#barcode", loginString, {
     format: "code128",
-    displayValue: false,  // hide the text
-    width: 2,
-    height: 100,
-    margin: 10
+    lineColor: "#000000",
+    background: "#FFFFFF",
+    displayValue: false, // hide the text if you only want bars
+    margin: 0
   });
 }
 
