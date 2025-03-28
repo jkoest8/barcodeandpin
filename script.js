@@ -1,5 +1,5 @@
 function generateBarcode() {
-  // Read user inputs
+  // Grab inputs
   const username = document.getElementById('username').value.trim();
   const partialPassword = document.getElementById('partialPassword').value.trim();
 
@@ -8,16 +8,16 @@ function generateBarcode() {
     return;
   }
 
-  // Combine username and partial password, with a tab (\t) between them
-  // Example: "jdoe\tMySecretPassword"
-  // Note: We do NOT add "\n" (Enter key) so it doesn't auto-submit.
+  // Combine them with a Tab (\t) in between, but NO Enter (\n).
+  // This means scanning the barcode will type username, press Tab,
+  // and type the partial password, but won't auto-login.
   const loginString = `${username}\t${partialPassword}`;
 
-  // Clear any existing barcode
+  // Clear previous barcode (if any)
   const container = document.getElementById('barcode-container');
   container.innerHTML = "";
 
-  // Create an SVG element for JsBarcode
+  // Create an SVG element to display the barcode
   const svg = document.createElement('svg');
   svg.id = "barcode";
   container.appendChild(svg);
@@ -25,7 +25,7 @@ function generateBarcode() {
   // Generate the barcode
   JsBarcode("#barcode", loginString, {
     format: "code128",
-    displayValue: false,  // Hide the text to avoid revealing your partial password
+    displayValue: false, // Hide text to avoid showing the partial password
     width: 2,
     height: 100,
     margin: 10
