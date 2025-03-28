@@ -1,33 +1,36 @@
 function generateBarcode() {
-  // Grab inputs
-  const username = document.getElementById('username').value.trim();
-  const partialPassword = document.getElementById('partialPassword').value.trim();
+  // Get values from the two input fields
+  const username = document.getElementById("username").value.trim();
+  const partialPassword = document.getElementById("partialPassword").value.trim();
 
   if (!username || !partialPassword) {
-    alert("Please enter both a username and a partial password!");
+    alert("Please enter both a username and partial password!");
     return;
   }
 
-  // Combine them with a Tab (\t) in between, but NO Enter (\n).
-  // This means scanning the barcode will type username, press Tab,
-  // and type the partial password, but won't auto-login.
+  // Build the string that the barcode will contain
+  //   "\t" = Tab key
+  // (No "\n" so it won't automatically press Enter)
   const loginString = `${username}\t${partialPassword}`;
 
-  // Clear previous barcode (if any)
-  const container = document.getElementById('barcode-container');
+  // Clear anything that was in the container before
+  const container = document.getElementById("barcode-container");
   container.innerHTML = "";
 
-  // Create an SVG element to display the barcode
-  const svg = document.createElement('svg');
+  // Create an <svg id="barcode"> element dynamically
+  const svg = document.createElement("svg");
   svg.id = "barcode";
+
+  // Append the SVG to our container
   container.appendChild(svg);
 
-  // Generate the barcode
+  // Now generate the Code128 barcode inside that <svg>
   JsBarcode("#barcode", loginString, {
     format: "code128",
-    displayValue: false, // Hide text to avoid showing the partial password
+    displayValue: false,  // hide the text
     width: 2,
     height: 100,
     margin: 10
   });
 }
+
