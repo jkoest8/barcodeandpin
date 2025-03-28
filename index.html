@@ -1,42 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Barcode Generator</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <h1>Barcode Generator</h1>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Badge with Partial Password Barcode</title>
 
-  <!-- Username input -->
-  <p>
-    <label for="username">Username:</label>
-    <input type="text" id="username" />
-  </p>
-
-  <!-- Partial Password input (masked with asterisks) -->
-  <p>
-    <label for="partialPassword">Partial Password:</label>
-    <input type="password" id="partialPassword" />
-  </p>
-
-  <!-- Generate button -->
-  <button onclick="generateBarcode()">Generate Barcode</button>
-
-  <!-- Container where we'll insert the <svg> -->
-  <div id="barcode-container" style="margin-top: 20px;"></div>
-
-  <!-- 
-    1) Load JsBarcode library from a CDN 
-       (must come BEFORE your own script!)
-  -->
+  <!-- Load JsBarcode from a CDN -->
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 
-  <!-- 
-    2) Load your custom script 
-       (where we dynamically create the <svg> and call JsBarcode)
-  -->
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="card-container">
+    <label for="username">Username:</label>
+    <input 
+      type="text" 
+      id="username" 
+      oninput="generateBarcode()" 
+      placeholder="e.g. jdoe"
+    />
+
+    <label for="partialPassword">Partial Password (masked):</label>
+    <input 
+      type="password" 
+      id="partialPassword" 
+      oninput="generateBarcode()" 
+      placeholder="e.g. MySecretPart"
+    />
+
+    <div id="card">
+      <p>Company Name or Municipality</p>
+      <p>Employee/Member ID Card</p>
+      <p>
+        This barcode includes your username and partial password<br/>
+        (minus your secret PIN). Use with caution!
+      </p>
+
+      <!-- The dynamically rendered barcode -->
+      <svg id="barcode"></svg>
+
+      <!-- Optional text showing what's in the barcode (for debugging) -->
+      <p id="barcodeString"></p>
+    </div>
+  </div>
+
+  <!-- Load our custom script last -->
   <script src="script.js"></script>
 </body>
 </html>
-
