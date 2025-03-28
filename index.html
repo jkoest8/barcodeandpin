@@ -2,25 +2,36 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Barcode Credential Generator</title>
+  <title>Partial Password + PIN Barcode Generator</title>
 </head>
 <body>
-  <h1>Generate Your Windows Login Barcode</h1>
+  <h1>Generate Your Barcode (Partial Password Only)</h1>
 
-  <!-- Username Field -->
+  <!-- Username -->
   <label for="username">Username:</label>
-  <input type="text" id="username" name="username" /><br/><br/>
+  <input type="text" id="username" /><br /><br />
 
-  <!-- Password Field -->
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" /><br/><br/>
+  <!-- Partial Password (omit your PIN here) -->
+  <label for="partialPassword">Partial Password:</label>
+  <input type="text" id="partialPassword" /><br /><br />
 
-  <!-- Generate Button -->
+  <!-- PIN is typed at login, not stored in barcode -->
+  <p>
+    <em>
+      Your PIN will be typed manually at login, so there's no field for it here.
+      (This ensures the barcode alone is not sufficient to log in.)
+    </em>
+  </p>
+
   <button onclick="generateBarcode()">Generate Barcode</button>
 
-  <!-- Placeholder for the generated barcode -->
-  <div id="barcode-container" style="margin-top: 20px;"></div>
+  <!-- Container for the generated barcode -->
+  <div id="barcode-container" style="margin-top: 30px;"></div>
 
-  <!-- JsBarcode Library (loaded from a CDN) -->
+  <!-- Load the JsBarcode library from a CDN -->
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
